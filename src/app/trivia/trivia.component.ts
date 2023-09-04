@@ -27,6 +27,8 @@ export class TriviaComponent {
 
   // Create a new quiz based on selected category and difficulty
   createQuiz() {
+    this.questions=[];
+    this.isQuizCompleted=false;
     this.quizService
       .getQuizQuestions(5, this.selectedCategory, this.selectedDifficulty)
       .subscribe((data) => {

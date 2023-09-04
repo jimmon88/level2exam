@@ -1,11 +1,44 @@
-button:hover {
-    background-color: #0056b3;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  select,
+  button {
+    height: 40px;
+    margin-right: 25px;
+    border-radius: 5px;
   }
-  
-  button.selected {
-    background-color: #28a745;
+  #difficultySelect {
+    width: 100px;
   }
-  
-  button.selected:hover {
-    background-color: #1e7e34;
+  &.qns {
+    align-items: flex-start;
+    margin-top: 35px;
   }
+  .button-container {
+    display: flex;
+    button {
+      border-color: green;
+      color: green;
+    }
+    button.selected,
+    button:hover {
+      background-color: #28a745;
+      color: white;
+    }
+  }
+  &.submit-container {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    button {
+      width: 60%;
+      background-color:gray;
+    } button:hover {
+      background-color: #849985;
+      color: white;
+    }
+  }
+}

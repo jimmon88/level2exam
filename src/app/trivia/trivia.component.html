@@ -1,5 +1,8 @@
-<div>
-   <h2>Quiz Maker</h2>
+<div class="container">
+  <div>
+    <h2>Quiz Maker</h2>
+  </div>
+  <div class="choose_qns">
     <!-- Category and difficulty dropdowns -->
     <select id="categorySelect" [(ngModel)]="selectedCategory">
       <option *ngFor="let category of categories$|async" [value]="category.id">{{ category.name }}</option>
@@ -11,18 +14,26 @@
     </select>
     <button id="createBtn" (click)="createQuiz()">Create Quiz</button>
   </div>
-  
-  <!-- questions and answer buttons -->
-  <div *ngIf="isQuizStarted">
-    <div *ngFor="let question of questions; let qnIndex = index">
-      <p> {{ question.question }}</p>{{question.correct_answer}}
+</div>
+
+<!-- questions and answer buttons -->
+<div *ngIf="isQuizStarted" class="container qns">
+  <div *ngFor="let question of questions; let qnIndex = index">
+    <p> {{ question.question }}</p>
+    <div class="button-container">
       <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
-        <button [ngClass]="{'selected': question.selected_answer_index === ansIndex}" (click)="onAnswerSelect(qnIndex, ansIndex)">{{ answer }}</button>
+        <button [ngClass]="{'selected': question.selected_answer_index === ansIndex}"
+          (click)="onAnswerSelect(qnIndex, ansIndex)">{{ answer }}</button>
       </div>
     </div>
+
   </div>
-  <!-- questions and answer buttons ends here-->
-  
-  <!-- submit button section -->
-  <button *ngIf="isQuizStarted && isQuizCompleted" (click)="submitQuiz()" >Submit Quiz</button>
-   <!-- submit button section ends here-->
+</div>
+<!-- questions and answer buttons ends here-->
+
+<!-- submit button section -->
+<div *ngIf="isQuizStarted && isQuizCompleted" class="submit-container container">
+  <button (click)="submitQuiz()">Submit</button>
+</div>
+
+<!-- submit button section ends here-->
