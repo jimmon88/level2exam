@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'trivia', component: TriviaComponent },
   { path: 'trivia-results', component: TriviaAnswersComponent },
   { path: '', redirectTo: '/trivia', pathMatch: 'full' }, // Default route
+  { path: '**', redirectTo: '/trivia', pathMatch: 'full' }, // Default route
 ];
 
 
