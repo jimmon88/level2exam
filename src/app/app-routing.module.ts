@@ -6,7 +6,7 @@ import { TriviaAnswersComponent } from './trivia-answers/trivia-answers.componen
 const routes: Routes = [
   { path: 'trivia', component: TriviaComponent },
   { path: 'trivia-results', component: TriviaAnswersComponent },
-  { path: '', redirectTo: '/quiz', pathMatch: 'full' }, // Default route
+  { path: '', redirectTo: '/trivia', pathMatch: 'full' }, // Default route
 ];
 
 
