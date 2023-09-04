@@ -1,0 +1,26 @@
+<div>
+   <h2>Quiz Maker App</h2>
+    <!-- Category and difficulty dropdowns -->
+    <select id="categorySelect" [(ngModel)]="selectedCategory">
+      <option *ngFor="let category of categories$|async" [value]="category.id">{{ category.name }}</option>
+    </select>
+    <select id="difficultySelect" [(ngModel)]="selectedDifficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button id="createBtn" (click)="createQuiz()">Create Quiz</button>
+  </div>
+  
+  <!-- Display questions and answer buttons -->
+  <div *ngIf="isQuizStarted">
+    <div *ngFor="let question of questions; let i = index">
+      <p>{{ i + 1 }}. {{ question.question }}</p>
+      <div *ngFor="let answer of question.shuffled_answers; let j = index">
+        <button [ngClass]="{'selected': selectedAnswers[i] === j}" (click)="onAnswerSelect(i, j)">{{ answer }}</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Display submit button when all questions are answered -->
+  <button *ngIf="isQuizStarted && isQuizCompleted()" >Submit Quiz</button>
