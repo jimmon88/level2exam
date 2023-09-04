@@ -1,5 +1,5 @@
 <div>
-   <h2>Quiz Maker App</h2>
+   <h2>Quiz Maker</h2>
     <!-- Category and difficulty dropdowns -->
     <select id="categorySelect" [(ngModel)]="selectedCategory">
       <option *ngFor="let category of categories$|async" [value]="category.id">{{ category.name }}</option>
@@ -23,4 +23,4 @@
   </div>
   
   <!-- Display submit button when all questions are answered -->
-  <button *ngIf="isQuizStarted && isQuizCompleted()" >Submit Quiz</button>
+  <button *ngIf="isQuizStarted && selectedAnswers.length === questions.length" >Submit Quiz</button>

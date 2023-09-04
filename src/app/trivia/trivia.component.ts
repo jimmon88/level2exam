@@ -62,8 +62,5 @@ export class TriviaComponent {
       this.selectedAnswers[questionIndex] = answerIndex;
     }
   
-    // Check if the quiz is completed
-    isQuizCompleted(): boolean {
-      return this.selectedAnswers.length === this.questions.length;
-    }
+  
 }
