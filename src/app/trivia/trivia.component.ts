@@ -3,6 +3,7 @@ import { QuizService } from '../shared/services/quiz.service';
 import { Category } from '../shared/models/category';
 import { Question } from '../shared/models/question';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trivia',
@@ -10,21 +11,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./trivia.component.scss'],
 })
 export class TriviaComponent {
-  categories$!: Observable<Category[]> ;
+  categories$!: Observable<Category[]>;
   selectedCategory!: number;
   selectedDifficulty: string = 'easy';
   questions: Question[] = [];
-  isQuizStarted: boolean= false;
+  isQuizStarted: boolean = false;
   selectedAnswers: number[] = [];
+  isQuizCompleted: boolean = false;
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
-    // Fetch categories from the API
-    // this.quizService.getCategories().subscribe((categories: Category[]) => {
-    //   this.categories = categories;
-    // });
-    this.categories$= this.quizService.getCategories();
+    this.categories$ = this.quizService.getCategories();
   }
 
   // Create a new quiz based on selected category and difficulty
@@ -32,16 +30,18 @@ export class TriviaComponent {
     this.quizService
       .getQuizQuestions(5, this.selectedCategory, this.selectedDifficulty)
       .subscribe((data) => {
-        this.questions = data?.results.map((question: Question) => {
+        this.questions = data?.map((question: Question) => {
           // Changing answer orders
           const answers = this.changeAnswerOrder([
             ...question.incorrect_answers,
             question.correct_answer,
           ]);
           return {
-            question: question.question,
-            correct_answer: question.correct_answer,
+            ...question,
             shuffled_answers: answers,
+            correct_answer_index: answers.findIndex(
+              (ans) => ans === question.correct_answer
+            ),
           };
         });
         this.isQuizStarted = true;
@@ -57,10 +57,21 @@ export class TriviaComponent {
     return answers;
   }
 
-    // Method for handling answer selection for question
-    onAnswerSelect(questionIndex: number, answerIndex: number) {
-      this.selectedAnswers[questionIndex] = answerIndex;
-    }
-  
-  
+  // Method for handling answer selection for question
+  onAnswerSelect(questionIndex: number, answerIndex: number) {
+    this.questions[questionIndex].selected_answer_index = answerIndex;
+    this.questions[questionIndex].isCorrect =
+      this.questions[questionIndex].shuffled_answers.indexOf(
+        this.questions[questionIndex].correct_answer
+      ) === answerIndex;
+    this.isQuizCompleted = this.questions.every(
+      (qn) => qn.selected_answer_index !== undefined
+    );
+  }
+
+  // Method to handle submit event of quiz
+  submitQuiz() {
+    this.quizService.submittedAnsWithQns = this.questions;
+    this.router.navigate(['/trivia-results']);
+  }
 }
