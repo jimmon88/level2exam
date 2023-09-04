@@ -239,10 +239,17 @@ function TriviaAnswersComponent_div_5_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", question_r1.shuffled_answers);
   }
 }
+const _c0 = function (a0, a1) {
+  return {
+    "red": a0,
+    "yellow": a1
+  };
+};
 class TriviaAnswersComponent {
   constructor(quizService, router) {
     this.quizService = quizService;
     this.router = router;
+    this.totalCorrectAnsCount = 0;
   }
   ngOnInit() {
     // fetching quiz results from the QuizService
@@ -251,6 +258,7 @@ class TriviaAnswersComponent {
       this.router.navigate(['/trivia']);
     }
     this.submittedAnsWithQns.map(question => {
+      if (question.isCorrect) this.totalCorrectAnsCount++;
       question.shuffled_answers_button_color = question.shuffled_answers.map((ans, index) => {
         return index === question.correct_answer_index ? 'green' : index === question.selected_answer_index ? 'red' : 'normal';
       });
@@ -265,9 +273,9 @@ _class.ɵfac = function TriviaAnswersComponent_Factory(t) {
 _class.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
   type: _class,
   selectors: [["app-trivia-answers"]],
-  decls: 6,
-  vars: 1,
-  consts: [[1, "container"], [4, "ngFor", "ngForOf"], [3, "ngClass"]],
+  decls: 11,
+  vars: 6,
+  consts: [[1, "container"], [4, "ngFor", "ngForOf"], [3, "ngClass"], ["routerLink", "/registration"]],
   template: function TriviaAnswersComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "h2");
@@ -277,14 +285,23 @@ _class.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefi
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, "Your Quiz Results:");
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, TriviaAnswersComponent_div_5_Template, 4, 2, "div", 1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 2)(7, "p");
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Create Another Quiz");
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
     }
     if (rf & 2) {
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.submittedAnsWithQns);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction2"](3, _c0, ctx.totalCorrectAnsCount <= 1, ctx.totalCorrectAnsCount));
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Your Scored: ", ctx.totalCorrectAnsCount, "");
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgClass, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgClass, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf, _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterLink],
   styles: [".green[_ngcontent-%COMP%] {\n  background-color: green;\n  font-weight: bold;\n}\n\n.red[_ngcontent-%COMP%] {\n  background-color: red;\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvdHJpdmlhLWFuc3dlcnMvdHJpdmlhLWFuc3dlcnMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx1QkFBQTtFQUNBLGlCQUFBO0FBQ0o7O0FBRUU7RUFDRSxxQkFBQTtFQUNBLGlCQUFBO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyIuZ3JlZW4ge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICB9XHJcbiAgXHJcbiAgLnJlZCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICB9Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 

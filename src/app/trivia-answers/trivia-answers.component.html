@@ -4,9 +4,15 @@
     <div *ngFor="let question of submittedAnsWithQns; let qnIndex = index">
         <p> {{ question.question }}</p>
         <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
-          <button [ngClass]="question.shuffled_answers_button_color[ansIndex]" >{{ answer }}</button>
+            <button [ngClass]="question.shuffled_answers_button_color[ansIndex]">{{ answer }}</button>
         </div>
-      </div>
-    <!-- <p>Your Score: <span [style.color]="getScoreColor()">{{ calculateScore() }}</span></p>
-    <button (click)="navigateToQuizCreation()">Create Another Quiz</button> -->
+    </div>
+    <div
+        [ngClass]="{'red':totalCorrectAnsCount<=1,'yellow':(totalCorrectAnsCount > 1 && totalCorrectAnsCount<=3),'green':totalCorrectAnsCount>3}">
+        <p>Your Scored: {{totalCorrectAnsCount}}</p>
+    </div>
+
+
+    <button routerLink='/registration'>Create Another Quiz</button>
+
 </div>
