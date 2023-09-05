@@ -2,21 +2,21 @@
   <div>
     <h2>Quiz Maker</h2>
   </div>
+  <!-- Category and difficulty selection container -->
   <div class="choose_qns">
-    <!-- Category and difficulty dropdowns -->
-    <select id="categorySelect" [(ngModel)]="selectedCategory">
+    <select [(ngModel)]="selectedCategory" id="categorySelect">
       <option *ngFor="let category of categories$|async" [value]="category.id">{{ category.name }}</option>
     </select>
-    <select id="difficultySelect" [(ngModel)]="selectedDifficulty">
+    <select [(ngModel)]="selectedDifficulty" id="difficultySelect">
       <option value="easy">Easy</option>
       <option value="medium">Medium</option>
       <option value="hard">Hard</option>
     </select>
-    <button id="createBtn" (click)="createQuiz()">Create Quiz</button>
+    <button id="createBtn" (click)="createQuiz()">Create</button>
   </div>
 </div>
 
-<!-- questions and answer buttons -->
+<!-- Questions container -->
 <div *ngIf="isQuizStarted" class="container qns">
   <div *ngFor="let question of questions; let qnIndex = index">
     <p> {{ question.question }}</p>
@@ -26,14 +26,10 @@
           (click)="onAnswerSelect(qnIndex, ansIndex)">{{ answer }}</button>
       </div>
     </div>
-
   </div>
 </div>
-<!-- questions and answer buttons ends here-->
 
 <!-- submit button section -->
 <div *ngIf="isQuizStarted && isQuizCompleted" class="submit-container container">
   <button (click)="submitQuiz()">Submit</button>
 </div>
-
-<!-- submit button section ends here-->

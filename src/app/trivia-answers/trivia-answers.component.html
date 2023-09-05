@@ -2,6 +2,7 @@
     <div>
         <h2>Results</h2>
     </div>
+    <!-- Result container-->
     <div>
         <div *ngFor="let question of submittedAnsWithQns; let qnIndex = index">
             <p> {{ question.question }}</p>
@@ -10,17 +11,17 @@
                     <button [ngClass]="question.shuffled_answers_button_color[ansIndex]">{{ answer }}</button>
                 </div>
             </div>
-
         </div>
     </div>
+    <!-- container for final score display-->
     <div class="result-container">
         <div class="result"
             [ngClass]="{'red':totalCorrectAnsCount<=1,'yellow':(totalCorrectAnsCount > 1 && totalCorrectAnsCount<=3),'green':totalCorrectAnsCount>3}">
-            <p>Your Scored: {{totalCorrectAnsCount}} out of {{submittedAnsWithQns.length}}</p>
+            <p>Your scored {{totalCorrectAnsCount}} out of {{submittedAnsWithQns.length}}</p>
         </div>
     </div>
+    <!--Button container for create new quiz -->
     <div class="submit-container container">
         <button routerLink='/registration'>Create a new quiz</button>
     </div>
-
 </div>

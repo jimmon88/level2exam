@@ -11,6 +11,7 @@ import { Question } from '../shared/models/question';
 export class TriviaAnswersComponent implements OnInit {
   submittedAnsWithQns!: Question[];
   totalCorrectAnsCount: number = 0;
+
   constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
@@ -19,6 +20,7 @@ export class TriviaAnswersComponent implements OnInit {
     if (!this.submittedAnsWithQns) {
       this.router.navigate(['/trivia']);
     }
+    // Setting button color classs based on selected answer
     this.submittedAnsWithQns.map((question) => {
       if (question.isCorrect) this.totalCorrectAnsCount++;
       question.shuffled_answers_button_color = question.shuffled_answers.map(
@@ -31,6 +33,5 @@ export class TriviaAnswersComponent implements OnInit {
         }
       );
     });
-    console.log(this.submittedAnsWithQns);
   }
 }

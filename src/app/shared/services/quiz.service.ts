@@ -8,7 +8,7 @@ import { Question, QuestionWrapper } from '../models/question';
   providedIn: 'root',
 })
 export class QuizService {
-  submittedAnsWithQns!: Question[];
+  submittedAnsWithQns!: Question[];// TO store selected answer details
 
   constructor(private http: HttpClient) {}
 
@@ -21,13 +21,13 @@ export class QuizService {
 
   // Fetch questions from the Open Trivia Database API
   getQuizQuestions(
-    amount: number,
     category: number,
-    difficulty: string
+    difficulty: string,
+    count: number,
   ): Observable<Question[]> {
     return this.http
       .get<QuestionWrapper>(
-        `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`
+        `https://opentdb.com/api.php?amount=${count}&category=${category}&difficulty=${difficulty}&type=multiple`
       )
       .pipe(map((res) => res.results));
   }

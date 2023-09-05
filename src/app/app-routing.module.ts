@@ -7,12 +7,11 @@ const routes: Routes = [
   { path: 'trivia', component: TriviaComponent },
   { path: 'trivia-results', component: TriviaAnswersComponent },
   { path: '', redirectTo: '/trivia', pathMatch: 'full' }, // Default route
-  { path: '**', redirectTo: '/trivia', pathMatch: 'full' }, // Default route
+  { path: '**', redirectTo: '/trivia' },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

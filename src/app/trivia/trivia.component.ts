@@ -30,7 +30,7 @@ export class TriviaComponent {
     this.questions=[];
     this.isQuizCompleted=false;
     this.quizService
-      .getQuizQuestions(5, this.selectedCategory, this.selectedDifficulty)
+      .getQuizQuestions(this.selectedCategory, this.selectedDifficulty,5)
       .subscribe((data) => {
         this.questions = data?.map((question: Question) => {
           // Changing answer orders
