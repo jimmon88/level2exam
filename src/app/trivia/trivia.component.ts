@@ -23,25 +23,26 @@ export class TriviaComponent {
 
   ngOnInit() {
     this.categories$ = this.quizService.getCategories();
+    this.isQuizStarted = false;
   }
 
   // Create a new quiz based on selected category and difficulty
   createQuiz() {
-    this.questions=[];
-    this.isQuizCompleted=false;
+    this.questions = [];
+    this.isQuizCompleted = false;
     this.quizService
-      .getQuizQuestions(this.selectedCategory, this.selectedDifficulty,5)
+      .getQuizQuestions(this.selectedCategory, this.selectedDifficulty, 5)
       .subscribe((data) => {
         this.questions = data?.map((question: Question) => {
           // Changing answer orders
-          const answers = this.changeAnswerOrder([
+          const shuffledAnswers = this.changeAnswerOrder([
             ...question.incorrect_answers,
             question.correct_answer,
           ]);
           return {
             ...question,
-            shuffled_answers: answers,
-            correct_answer_index: answers.findIndex(
+            shuffled_answers: shuffledAnswers,
+            correct_answer_index: shuffledAnswers.findIndex(
               (ans) => ans === question.correct_answer
             ),
           };
@@ -50,7 +51,7 @@ export class TriviaComponent {
       });
   }
 
-  // Changing answer orders
+  // Changing answer orders based on Fisher-Yates Sorting Algorithm
   changeAnswerOrder(answers: string[]) {
     for (let i = answers.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -62,10 +63,12 @@ export class TriviaComponent {
   // Method for handling answer selection for question
   onAnswerSelect(questionIndex: number, answerIndex: number) {
     this.questions[questionIndex].selected_answer_index = answerIndex;
+
     this.questions[questionIndex].isCorrect =
       this.questions[questionIndex].shuffled_answers.indexOf(
         this.questions[questionIndex].correct_answer
       ) === answerIndex;
+    //Checking whether all the answer is selected or not
     this.isQuizCompleted = this.questions.every(
       (qn) => qn.selected_answer_index !== undefined
     );
