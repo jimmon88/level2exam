@@ -14,25 +14,32 @@
     margin-bottom: 10px;
     white-space: nowrap;
   }
-  .button-container {
+  .answer-container {
     display: flex;
-    margin-bottom: 20px;
-    button {
-      border-color: green;
-      color: green;
-    }
-    .green {
-      background-color: green;
-      color: white;
-      font-weight: bold;
-    }
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: nowrap;
+    .button-container {
+      display: flex;
+      margin-bottom: 20px;
+      button {
+        border-color: green;
+        color: green;
+      }
+      .green {
+        background-color: green;
+        color: white;
+        font-weight: bold;
+      }
 
-    .red {
-      background-color: red;
-      color: white;
-      font-weight: bold;
+      .red {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+      }
     }
   }
+
   .result-container {
     width: 40%;
     display: flex;
