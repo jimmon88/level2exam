@@ -11,10 +11,12 @@
     margin-right: 25px;
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
   }
   .button-container {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     button {
       border-color: green;
       color: green;
