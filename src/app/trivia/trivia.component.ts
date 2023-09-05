@@ -63,7 +63,7 @@ export class TriviaComponent {
   // Method for handling answer selection for question
   onAnswerSelect(questionIndex: number, answerIndex: number) {
     this.questions[questionIndex].selected_answer_index = answerIndex;
-
+    // Checking whether the selected answer is correct or not
     this.questions[questionIndex].isCorrect =
       this.questions[questionIndex].shuffled_answers.indexOf(
         this.questions[questionIndex].correct_answer
