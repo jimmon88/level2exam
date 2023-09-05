@@ -5,10 +5,10 @@
     <!-- Result container-->
     <div class="answer-container">
         <div *ngFor="let question of submittedAnsWithQns; let qnIndex = index">
-            <p> {{ question.question }}</p>
+            <p [innerHTML]="question.question"> </p>
             <div class="button-container">
                 <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
-                    <button [ngClass]="question.shuffled_answers_button_color?.[ansIndex]">{{ answer }}</button>
+                    <button [ngClass]="question.shuffled_answers_button_color?.[ansIndex]"  [innerHTML]="answer"></button>
                 </div>
             </div>
         </div>

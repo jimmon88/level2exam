@@ -19,11 +19,11 @@
 <!-- Questions container -->
 <div *ngIf="isQuizStarted" class="container qns">
   <div *ngFor="let question of questions; let qnIndex = index">
-    <p> {{ question.question }}</p>
+    <p [innerHTML]="question.question"></p>
     <div class="button-container">
       <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
         <button [ngClass]="{'selected': question.selected_answer_index === ansIndex}"
-          (click)="onAnswerSelect(qnIndex, ansIndex)">{{ answer }}</button>
+          (click)="onAnswerSelect(qnIndex, ansIndex)" [innerHTML]="answer"></button>
       </div>
     </div>
   </div>
