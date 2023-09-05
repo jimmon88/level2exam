@@ -1,18 +1,26 @@
 <div class="container">
-    <h2>Quiz Results</h2>
-    <p>Your Quiz Results:</p>
-    <div *ngFor="let question of submittedAnsWithQns; let qnIndex = index">
-        <p> {{ question.question }}</p>
-        <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
-            <button [ngClass]="question.shuffled_answers_button_color[ansIndex]">{{ answer }}</button>
+    <div>
+        <h2>Results</h2>
+    </div>
+    <div>
+        <div *ngFor="let question of submittedAnsWithQns; let qnIndex = index">
+            <p> {{ question.question }}</p>
+            <div class="button-container">
+                <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
+                    <button [ngClass]="question.shuffled_answers_button_color[ansIndex]">{{ answer }}</button>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div
-        [ngClass]="{'red':totalCorrectAnsCount<=1,'yellow':(totalCorrectAnsCount > 1 && totalCorrectAnsCount<=3),'green':totalCorrectAnsCount>3}">
-        <p>Your Scored: {{totalCorrectAnsCount}}</p>
+    <div class="result-container">
+        <div class="result"
+            [ngClass]="{'red':totalCorrectAnsCount<=1,'yellow':(totalCorrectAnsCount > 1 && totalCorrectAnsCount<=3),'green':totalCorrectAnsCount>3}">
+            <p>Your Scored: {{totalCorrectAnsCount}} out of {{submittedAnsWithQns.length}}</p>
+        </div>
     </div>
-
-
-    <button routerLink='/registration'>Create Another Quiz</button>
+    <div class="submit-container container">
+        <button routerLink='/registration'>Create a new quiz</button>
+    </div>
 
 </div>

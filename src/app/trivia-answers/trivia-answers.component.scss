@@ -1,14 +1,83 @@
-.green {
-    background-color: green;
-    font-weight: bold;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  select,
+  button {
+    height: 40px;
+    margin-right: 25px;
+    border-radius: 5px;
+    padding: 10px;
   }
-  
-  .red {
-    background-color: red;
-    font-weight: bold;
+  .button-container {
+    display: flex;
+    margin-bottom: 30px;
+    button {
+      border-color: green;
+      color: green;
+    }
+    .green {
+      background-color: green;
+      color: white;
+      font-weight: bold;
+    }
+
+    .red {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+    }
   }
-  
-  .yellow {
-    background-color: yellow;
-    font-weight: bold;
+  .result-container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    .result {
+      width: 60%;
+      text-align: center;
+      padding: 1px;
+      margin-bottom: 30px;
+    }
+    .green {
+      background-color: green;
+      color: white;
+      font-weight: bold;
+    }
+
+    .red {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+    }
+    .yellow {
+      background-color: yellow;
+      font-weight: bold;
+    }
   }
+  &.create-container {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    button {
+      width: 60%;
+      background-color: gray;
+    }
+    button:hover {
+      background-color: #849985;
+      color: white;
+    }
+  }
+  &.submit-container {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    button {
+      width: 60%;
+      background-color:gray;
+    } button:hover {
+      background-color: #849985;
+      color: white;
+    }
+  }
+}
