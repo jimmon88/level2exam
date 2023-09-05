@@ -65,7 +65,7 @@ export class TriviaComponent {
     this.questions[questionIndex].selected_answer_index = answerIndex;
     // Checking whether the selected answer is correct or not
     this.questions[questionIndex].isCorrect =
-      this.questions[questionIndex].shuffled_answers.indexOf(
+      this.questions?.[questionIndex]?.shuffled_answers?.indexOf(
         this.questions[questionIndex].correct_answer
       ) === answerIndex;
     //Checking whether all the answer is selected or not

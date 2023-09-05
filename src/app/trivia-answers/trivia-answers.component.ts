@@ -23,7 +23,7 @@ export class TriviaAnswersComponent implements OnInit {
     // Setting button color classs based on selected answer
     this.submittedAnsWithQns.map((question) => {
       if (question.isCorrect) this.totalCorrectAnsCount++;
-      question.shuffled_answers_button_color = question.shuffled_answers.map(
+      question.shuffled_answers_button_color = question?.shuffled_answers?.map(
         (ans, index) => {
           return index === question.correct_answer_index
             ? 'green'

@@ -8,7 +8,7 @@
             <p> {{ question.question }}</p>
             <div class="button-container">
                 <div *ngFor="let answer of question.shuffled_answers; let ansIndex = index">
-                    <button [ngClass]="question.shuffled_answers_button_color[ansIndex]">{{ answer }}</button>
+                    <button [ngClass]="question.shuffled_answers_button_color?.[ansIndex]">{{ answer }}</button>
                 </div>
             </div>
         </div>
